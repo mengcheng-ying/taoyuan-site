@@ -1,0 +1,5 @@
+# 部署缓存与本地配置，不进版本库
+.edgeone/
+.wrangler/
+.env
+node_modules/
