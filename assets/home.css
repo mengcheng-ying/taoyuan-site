@@ -1,0 +1,139 @@
+/* ==========================================================================
+   首页 v3 —— 视觉优先（封面大图 + 截图墙 + 灯箱）
+   只作用于首页，不污染内页；设计变量全部取自 styles.css 的 :root
+   ========================================================================== */
+
+/* ── 封面 ─────────────────────────────────────────────── */
+.kv{position:relative;background:var(--ink-950);overflow:hidden}
+
+.kv-art{position:relative;line-height:0;height:clamp(240px,40svh,400px);overflow:hidden}
+.kv-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 24%}
+/* 底部压暗，让文案接得住，也让图与下一屏不留硬边 */
+.kv-art::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(253,251,247,.28) 0%,rgba(253,251,247,0) 20%,
+    rgba(253,251,247,.30) 48%,rgba(253,251,247,.86) 74%,rgba(253,251,247,.97) 90%,var(--ink-950) 100%)}
+
+.kv-copy{position:relative;z-index:2;margin-top:-64px;
+  padding:0 var(--gutter) var(--s-6)}
+
+.kv-kicker{display:inline-flex;align-items:center;gap:8px;margin:0 0 var(--s-3);
+  font-size:11.5px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase}
+.kv-kicker::before{content:"";width:20px;height:1px;background:var(--gold-deep)}
+
+.kv-title{margin:0;font-family:var(--font-serif);font-weight:700;
+  font-size:clamp(38px,11.4vw,62px);line-height:1.04;letter-spacing:.05em;
+  color:var(--text-hi);text-shadow:0 1px 26px rgba(255,255,255,.9),0 0 2px rgba(255,255,255,.7)}
+
+.kv-sub{margin:var(--s-3) 0 0;font-family:var(--font-serif);
+  font-size:clamp(14px,4.2vw,20px);letter-spacing:.24em;color:var(--gold);
+  text-shadow:0 1px 14px rgba(255,255,255,.85)}
+
+.kv-facts{display:flex;flex-wrap:wrap;gap:8px 18px;margin:var(--s-4) 0 0;padding:0;
+  list-style:none;font-size:12.5px;letter-spacing:.1em;color:var(--text-2)}
+.kv-facts li{display:flex;align-items:center;gap:7px}
+.kv-facts li::before{content:"";width:4px;height:4px;background:var(--gold);
+  transform:rotate(45deg);flex:none}
+
+.kv-cta{display:grid;grid-template-columns:1.15fr 1fr;gap:10px;margin-top:var(--s-5);
+  max-width:440px}
+.kv-cta .btn{min-height:50px;letter-spacing:.1em}
+
+@media (min-width:761px){
+  /* 顶栏是 sticky 的，减掉它的高度正好铺满一屏 */
+  .kv{min-height:calc(100svh - var(--head-h));display:flex;align-items:flex-end}
+  .kv-art{position:absolute;inset:0;height:auto}
+  .kv-art img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;
+    transform:scale(1.06);transform-origin:50% 44%}
+  /* 画面底部是一条浅色纸边，渐变不压住会和深色页面撞色 */
+  .kv-art::after{background:linear-gradient(180deg,rgba(253,251,247,.30) 0%,rgba(253,251,247,0) 20%,
+    rgba(253,251,247,.20) 38%,rgba(253,251,247,.74) 55%,rgba(253,251,247,.94) 72%,var(--ink-950) 92%)}
+  .kv-copy{margin:0 auto;width:100%;max-width:var(--wrap);
+    padding:0 var(--gutter) clamp(54px,9vh,116px)}
+  .kv-title{font-size:clamp(52px,6vw,96px)}
+  .kv-sub{font-size:clamp(16px,1.5vw,24px)}
+  .kv-cta{grid-template-columns:auto auto;justify-content:start;max-width:none;gap:12px}
+  .kv-cta .btn{min-width:212px;min-height:56px;padding:0 36px;font-size:16.5px}
+}
+
+/* ── 截图墙 ────────────────────────────────────────────── */
+.shots{padding:var(--pad) 0 var(--s-6);position:relative}
+.shots-head{padding:0 var(--gutter);margin-bottom:var(--s-5)}
+.shots-head h2{margin:0;font-family:var(--font-serif);font-size:var(--fs-h2);
+  letter-spacing:.1em;color:var(--text-hi)}
+.shots-head p{margin:var(--s-2) 0 0;font-size:12.5px;letter-spacing:.06em;color:var(--text-3)}
+
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:0 var(--gutter)}
+.gal button{position:relative;display:block;padding:0;border:0;background:var(--ink-850);
+  border-radius:var(--r-sm);overflow:hidden;cursor:zoom-in;
+  -webkit-tap-highlight-color:transparent}
+.gal img{display:block;width:100%;height:100%;aspect-ratio:16/9;object-fit:cover;
+  transition:transform 520ms var(--ease)}
+.gal button::after{content:"";position:absolute;inset:0;border-radius:inherit;
+  box-shadow:inset 0 0 0 1px rgba(217,178,92,.10);pointer-events:none;
+  transition:box-shadow var(--t-2) var(--ease)}
+.gal .wide{grid-column:span 2}
+@media (hover:hover){
+  .gal button:hover img{transform:scale(1.045)}
+  .gal button:hover::after{box-shadow:inset 0 0 0 1px var(--line-gold)}
+}
+@media (min-width:761px){
+  .gal{grid-template-columns:repeat(3,1fr);gap:10px}
+  .gal .wide{grid-column:span 1}
+}
+
+/* ── 玩法四条 ──────────────────────────────────────────── */
+.feat{padding:var(--pad-sm) 0 var(--s-6)}
+.feat ul{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:0;padding:0;list-style:none;
+  background:var(--line-soft);border:1px solid var(--line-soft);
+  border-radius:var(--r-md);overflow:hidden}
+.feat li{background:var(--ink-900);padding:var(--s-4)}
+.feat b{display:block;font-family:var(--font-serif);font-size:15px;letter-spacing:.08em;
+  color:var(--text-hi);font-weight:700}
+.feat span{display:block;margin-top:5px;font-size:12px;letter-spacing:.04em;color:var(--text-3)}
+@media (min-width:761px){.feat ul{grid-template-columns:repeat(4,1fr)}.feat li{padding:var(--s-5)}}
+
+/* ── 下载 ──────────────────────────────────────────────── */
+.home-dl{padding:0 0 var(--pad)}
+.home-dl .dl-grid{padding:0 var(--gutter)}
+.home-dl .facts{padding:0 var(--gutter)}
+
+/* ── 更多内容 ──────────────────────────────────────────── */
+.more{display:grid;gap:8px;padding:0 var(--gutter) var(--pad)}
+.more a{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);
+  padding:14px var(--s-4);border:1px solid var(--line-soft);border-radius:var(--r-sm);
+  background:var(--ink-900);font-size:14px;letter-spacing:.04em;color:var(--text-2);
+  transition:border-color var(--t-2) var(--ease),color var(--t-2) var(--ease)}
+.more a i{font-style:normal;color:var(--gold);flex:none}
+.more a:hover{border-color:var(--line-gold);color:var(--text-hi)}
+@media (min-width:761px){.more{grid-template-columns:repeat(3,1fr)}}
+
+/* ── 灯箱 ──────────────────────────────────────────────── */
+dialog.lb{margin:auto;padding:0;border:0;background:transparent;
+  width:100%;max-width:100vw;height:100%;max-height:100svh;overflow:hidden}
+dialog.lb::backdrop{background:rgba(28,20,14,.92);backdrop-filter:blur(6px)}
+
+.lb-stage{position:relative;width:100%;height:100%;display:flex;
+  align-items:center;justify-content:center;padding:env(safe-area-inset-top,0) 0}
+.lb-img{display:block;max-width:100%;max-height:82svh;object-fit:contain;
+  border-radius:var(--r-sm);box-shadow:0 24px 80px rgba(0,0,0,.7)}
+
+.lb-x,.lb-prev,.lb-next{position:absolute;z-index:3;display:grid;place-items:center;
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+  background:rgba(12,10,9,.72);color:var(--text);font-size:22px;line-height:1;
+  cursor:pointer;backdrop-filter:blur(8px);-webkit-tap-highlight-color:transparent}
+.lb-x{top:calc(14px + env(safe-area-inset-top,0));right:14px;font-size:24px}
+.lb-prev{left:10px;top:50%;transform:translateY(-50%)}
+.lb-next{right:10px;top:50%;transform:translateY(-50%)}
+.lb-x:hover,.lb-prev:hover,.lb-next:hover{color:var(--gold);border-color:var(--line-gold)}
+
+.lb-count{position:absolute;left:0;right:0;bottom:calc(18px + env(safe-area-inset-bottom,0));
+  margin:0;text-align:center;font-size:12.5px;letter-spacing:.18em;color:var(--text-3)}
+
+@media (min-width:761px){
+  .lb-img{max-height:84svh}
+  .lb-prev{left:24px}.lb-next{right:24px}
+}
+@media (max-width:760px){
+  /* 手机上左右按钮让位给滑动手势 */
+  .lb-prev,.lb-next{display:none}
+}

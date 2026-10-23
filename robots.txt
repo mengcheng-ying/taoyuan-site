@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://taoyuan.yxl39.com/sitemap.xml
