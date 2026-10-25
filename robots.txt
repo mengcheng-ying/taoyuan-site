@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://taoyuan.yxl39.com/sitemap.xml
+
+# 2026-10-25 新增攻略栏目
