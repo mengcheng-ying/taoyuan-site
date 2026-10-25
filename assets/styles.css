@@ -694,3 +694,18 @@ html.js .rv.in{opacity:1;transform:none;
   html.js .rv{opacity:1;transform:none}
   .ph::after{animation:none;opacity:0}
 }
+
+
+/* ── 攻略列表（/guide/） ── */
+.gl{margin:var(--s-4) 0 var(--s-5);border-top:1px solid var(--line-soft)}
+.gl li{border-bottom:1px solid var(--line-soft)}
+.gl a{display:block;padding:var(--s-4) 0;text-decoration:none}
+.gl b{display:block;font-family:var(--font-serif);font-size:clamp(16px,3.6vw,19px);
+  line-height:1.5;color:var(--text-hi);font-weight:700;transition:color var(--t-2) var(--ease)}
+.gl span{display:block;margin-top:6px;font-size:13.5px;line-height:1.8;color:var(--text-3)}
+.gl a:hover b,.gl a:focus-visible b{color:var(--gold)}
+
+.guide-cta{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-3);
+  margin:var(--s-6) 0 var(--s-4)}
+@media (max-width:430px){.guide-cta{grid-template-columns:1fr}}
+.guide-cta .btn{min-height:48px}
