@@ -5,4 +5,8 @@
   <url><loc>https://taoyuan.yxl39.com/start</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://taoyuan.yxl39.com/reserve</loc><lastmod>2026-10-23</lastmod><priority>0.7</priority></url>
   <url><loc>https://taoyuan.yxl39.com/about</loc><lastmod>2026-10-23</lastmod><priority>0.3</priority></url>
+  <url><loc>https://taoyuan.yxl39.com/guide/</loc><lastmod>2026-10-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://taoyuan.yxl39.com/guide/pet</loc><lastmod>2026-10-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://taoyuan.yxl39.com/guide/trade</loc><lastmod>2026-10-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://taoyuan.yxl39.com/guide/guild</loc><lastmod>2026-10-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>
